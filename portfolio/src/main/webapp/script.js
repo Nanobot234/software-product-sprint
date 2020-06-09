@@ -17,12 +17,14 @@
  */
 function addRandomGreeting() {
   const greetings =
-      ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
+      ['Service is the rent we pay for the privledge of living here on Earth', 'The peopl who say your dreams are impossible hav already quit on theirs', 'Th key to success is to focus on goals not obstacles', 'If you dont sacrifice fo what you want what you want becomes the sacrifice'];
 
   // Pick a random greeting.
   const greeting = greetings[Math.floor(Math.random() * greetings.length)];
 
+    const boldGreeting = greeting.bold();
   // Add it to the page.
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
 }
+
