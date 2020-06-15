@@ -1,8 +1,11 @@
 #content {
   margin-left: auto;
   margin-right: auto;
-  width: 650px;
+  width: 100%;
+  height: 100vh;
   text-align: center;
+  background-color: #add8e6;
+  background-size: 100% 100%;
 }
 
 #greeting-container {
@@ -10,13 +13,53 @@
   font-weight: bold;
 }
 
+#myName-container {
+        font-size: 25px;
+}
 
 .Header img  {
-    width: 250px;
+    width: 150px;
     height: 150px;
     border-radius: 50%;
    
 }
+
+div.Intro {
+
+   
+    
+}
+
+div.Intro p {
+ font-size: 40px;
+
+}
+
+
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: coral;
+   
+}
+
+
+nav li {
+    float: left;
+    text-align: right;
+    margin-right: 20px;
+    padding: 14px 16px;
+    list-style-type: none;
+    
+    font-family: Arial;
+
+}
+
+nav li a {
+    color: blue;
+}
+
 
 div.gallery {
     margin: 5px;
@@ -36,12 +79,96 @@ div.desc {
     text-align: center;
 }
 
+div.links {
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
+  height: 100px;
+  background-color: coral;
+}
+
 
 .links img {
     width: 100px;
+    position: relative;
+    margin-top: 100px;
     height: 150px;
       float: left;
-    text-align: center;
-    margin-right: 20px;
+    align-content: center;
 }
+
+.links a {
+  margin-left: 30px;
+}
+
+/* This is for the second page  */
+
+
+#CurrId {
+  padding-top: 80px;
+  text-align: center;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  background-color: #add8e6;
+  background-size: 100% 100%;
+}
+.SchoolInfo img  {
+  display:  inline-block;
+  padding-top: 50px;
+  padding-left: 200px;
+  width: 300px;
+  height: 200px;
+}
+
+.SchoolInfo p {
+  display: inline-block;
+  position: absolute;
+  padding-top: 150px;
+   margin-left: 30px;
+  
+}
+
+.HomeInfo img {
+    display: inline-block;
+    padding-left: 200px;
+    padding-top: 50px;
+    width: 300px;
+    height: 200px;
+}
+
+.HomeInfo p {
+  display: inline-block;
+  position: absolute;
+   margin-left: 30px;
+   padding-top: 80px;
+
+ }
+  
+.SPSInfo img {
+    display: inline-block;
+    padding-left: 200px;
+    padding-top: 50px;
+    width: 300px;
+    height: 200px;
+}
+
+
+.SPSInfo p {
+   display: inline-block;
+  position: absolute;
+   margin-left: 30px;
+   padding-top: 50px;
+   border-style: solid;
+   border-color: black;
+     border-spacing: 40px;
+     height: 30px;
+
+}
+
+
+
+
 
