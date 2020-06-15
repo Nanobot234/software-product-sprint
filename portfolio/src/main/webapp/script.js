@@ -28,3 +28,10 @@ function addRandomGreeting() {
   greetingContainer.innerText = greeting;
 }
 
+function getRandomQuoteUsingArrowFunctions() {
+  fetch('/data').then(response => response.text()).then((quote) => {
+    document.getElementById('myName-container').innerText = quote;
+  });
+}
+
+

@@ -13,6 +13,9 @@
   font-weight: bold;
 }
 
+#myName-container {
+        font-size: 25px;
+}
 
 .Header img  {
     width: 150px;
