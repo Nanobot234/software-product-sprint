@@ -18,6 +18,9 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.Arrays;
 import javax.servlet.annotation.WebServlet;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -49,7 +52,14 @@ public class DataServlet extends HttpServlet {
       Arrays.sort(words);
     }
 
+      DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     StringList.add(Arrays.toString(words));
+
+    Entity taskEntity = new Entity("Task");
+   
+    taskEntity.setProperty("Comments", StringList);
+
+    datastore.put(taskEntity);
 
     // Respond with the result.
     response.setContentType("text/html;");
