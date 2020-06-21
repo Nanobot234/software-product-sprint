@@ -53,6 +53,22 @@ function getMySayings() {
   });
 }
 
+function previousComments() {
+fetch('/data').then(response => response.json()).then((Comments) => {
+ console.log(Comments);
+const myListElement = document.getElementById("commentsHistory");
+
+myListElement.innerHTML = '';
+
+  Comments.forEach((line) => {
+        myListElement.appendChild(createListElement(line.substring(1,line.length - 1)));
+        console.log(line);
+    });
+
+
+});
+}
+
 function createListElement(text) {
   const liElement = document.createElement('li');
   liElement.innerText = text;

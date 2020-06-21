@@ -14,8 +14,13 @@
 
 package com.google.sps.servlets;
 import java.util.*;
+import com.google.gson.Gson;
 import java.io.IOException;
+import java.util.Arrays;
 import javax.servlet.annotation.WebServlet;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,23 +28,67 @@ import javax.servlet.http.HttpServletResponse;
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
+     ArrayList<String> StringList = new ArrayList<String>();
 
 
+ public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Get the input from the form.
+    String text = getParameter(request, "thisName", "");
+    text += "\n";
+    text +=   getParameter(request, "thisComments", "");
+    boolean upperCase = Boolean.parseBoolean(getParameter(request, "upper-case", "false"));
+    boolean sort = Boolean.parseBoolean(getParameter(request, "sort", "false"));
 
-  @Override
+    // Convert the text to upper case.
+    if (upperCase) {
+      text = text.toUpperCase();
+    }
+
+    // Break the text into individual words.
+    String[] words = text.split("\\s*,\\s*");
+
+    // Sort the words.
+    if (sort) {
+      Arrays.sort(words);
+    }
+
+      DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    StringList.add(Arrays.toString(words));
+
+    Entity taskEntity = new Entity("Task");
+   
+    taskEntity.setProperty("Comments", StringList);
+
+    datastore.put(taskEntity);
+
+    // Respond with the result.
+    response.setContentType("text/html;");
+    response.getWriter().println(Arrays.toString(words));
+
+   response.sendRedirect("/contacts.html");
+  }
+
+
+    @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-  ArrayList<String> StringList = new ArrayList<String>();
-    
-  StringList.add("Computer Science is cool and exciting until you have to debug");
-  StringList.add("May the fourth be with you");
-  StringList.add("Always go the extra mile, youll get time to rest later");
 
-    String jsonString = convertToJson(StringList);
-  
-    response.setContentType("application/json;");
+   response.setContentType("application/json");
+
+   //loop through arrayList and return eacch string inside whcich 
+        String s = new String("Hi");
+   String jsonString = new Gson().toJson(StringList);
     response.getWriter().println(jsonString);
   }
 
+
+  
+   private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+    String value = request.getParameter(name);
+    if (value == null) {
+      return defaultValue;
+    }
+    return value;
+  }
 
   private String convertToJson(ArrayList list) {
     String json = "{";

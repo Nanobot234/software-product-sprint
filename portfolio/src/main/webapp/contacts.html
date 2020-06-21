@@ -7,10 +7,48 @@
     <script src="script.js"></script>
     <script src="https://use.fontawesome.com/e6c7837d78.js"></script>
   </head>
-  <body>
+  <body id="ContactME">
 
-  		<p> Contact Me Using The Form Below</p>
+<nav>
 
+<li> 
+  <a href="abouts.html">About Me</a>
+</li>
+
+<li>
+    <a href= "projects.html">My Projects</a>
+</li>
+
+<li> <a href="contacts.html">Contact Me</a>
+</li>
+</nav>
+
+
+    <br><br><br><br>
+    <div class="pageContent">
+  		<h1 style="color:coral"> I Want To Hear From You! Leave Me A Comment Below</h1>
+
+
+        <form action="/data" method="POST">
+            <label for="Name">Please Enter Your Name:</label><br>
+            <input type="text" id="Name" name="thisName">
+            <br>
+        <label for="Comments">Please enter your Comment Below</label><br>
+       
+            <textarea id="Comments" name="thisComments" rows="10" cols="70" required>
+            </textarea>
+   
+  <br>
+  <br>
+        <input type="submit">;
+
+        </form>
+
+        <button onclick="previousComments()">Clicck to See Your Comments</button>
+
+        <ul id="commentsHistory"></ul>
+        
+    </div>
 
   </body>
   </html>
