@@ -39,7 +39,7 @@ public class ListTasksServlet extends HttpServlet {
     Query query = new Query("Task").addSort("timestamp", SortDirection.DESCENDING);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    PreparedQuery results = datastore.prepare(query);
+    PreparedQuery results = datastore.prepare(query); //gives u all entities with a timestamp on it
 
     List<Task> tasks = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
