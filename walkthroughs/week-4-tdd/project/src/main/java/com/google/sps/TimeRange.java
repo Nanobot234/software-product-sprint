@@ -156,6 +156,7 @@ public final class TimeRange {
     return a.start == b.start && a.duration == b.duration;
   }
 
+
   public static int getTimeInMinutes(int hours, int minutes) {
     if (hours < 0 || hours >= 24) {
       throw new IllegalArgumentException("Hours can only be 0 through 23 (inclusive).");

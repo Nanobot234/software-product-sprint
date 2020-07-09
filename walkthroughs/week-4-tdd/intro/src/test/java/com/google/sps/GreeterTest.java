@@ -23,11 +23,12 @@ import org.junit.runners.JUnit4;
 public final class GreeterTest {
 
   @Test
-  public void testGreeting() {
-    Greeter greeter = new Greeter();
+public void testGreetingTrimsWhitespace() {
+  Greeter greeter = new Greeter();
 
-    String greeting = greeter.greet("Ada");
+  String greeting = greeter.greet("    Ada    ");
 
-    Assert.assertEquals("Hello Ada", greeting);
-  }
+  // Whitespace should be trimmed
+  Assert.assertEquals("Hello Ada", greeting);
+}
 }

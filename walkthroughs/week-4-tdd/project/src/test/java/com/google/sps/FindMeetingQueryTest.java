@@ -61,7 +61,7 @@ public final class FindMeetingQueryTest {
     MeetingRequest request = new MeetingRequest(NO_ATTENDEES, DURATION_1_HOUR);
 
     Collection<TimeRange> actual = query.query(NO_EVENTS, request);
-    Collection<TimeRange> expected = Arrays.asList(TimeRange.WHOLE_DAY);
+    Collection<TimeRange> expected = Arrays.asList(TimeRange.WHOLE_DAY); //this is a list of all the times throught the day?
 
     Assert.assertEquals(expected, actual);
   }
@@ -86,6 +86,7 @@ public final class FindMeetingQueryTest {
 
     MeetingRequest request = new MeetingRequest(Arrays.asList(PERSON_A), DURATION_30_MINUTES);
 
+//not sure
     Collection<TimeRange> actual = query.query(events, request);
     Collection<TimeRange> expected =
         Arrays.asList(TimeRange.fromStartEnd(TimeRange.START_OF_DAY, TIME_0830AM, false),
