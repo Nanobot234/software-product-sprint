@@ -29,6 +29,8 @@ import com.google.appengine.api.datastore.Query.SortDirection;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
@@ -37,6 +39,8 @@ public class DataServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+   
+   
     // Get the input from the form.
     String text = getParameter(request, "thisName", "");
     text += "\n";
@@ -83,6 +87,9 @@ public class DataServlet extends HttpServlet {
 
     @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+          
+
+
 
    response.setContentType("application/json");
 
@@ -106,8 +113,7 @@ public class DataServlet extends HttpServlet {
        }
 
     }
-
-        
+        //this part saves the 
    String jsonString = new Gson().toJson(AllComments);
     response.getWriter().println(jsonString);
   }
@@ -122,18 +128,18 @@ public class DataServlet extends HttpServlet {
     return value;
   }
 
-  private String convertToJson(ArrayList list) {
-    String json = "{";
-    json += "\"firstthing\": ";
-    json += "\"" + list.get(0) + "\"";
-    json += ", ";
-    json += "\"secondthing\": ";
-    json += "\"" + list.get(1) + "\"";
-    json += ", ";
-    json += "\"thirdthing\": ";
-    json +=  "\"" + list.get(2) + "\"";
-    json += "}";
-    return json;
+  private String getUserNickname(String id) {
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    Query query =
+        new Query("UserInfo")
+            .setFilter(new Query.FilterPredicate("id", Query.FilterOperator.EQUAL, id));
+    PreparedQuery results = datastore.prepare(query);
+    Entity entity = results.asSingleEntity();
+    if (entity == null) {
+      return null;
+    }
+    String nickname = (String) entity.getProperty("nickname");
+    return nickname;
   }
 
 }

@@ -54,6 +54,7 @@ function getMySayings() {
 }
 
 function previousComments() {
+   
 fetch('/data').then(response => response.json()).then((Comments) => {
  console.log(Comments);
 const myListElement = document.getElementById("commentsHistory");
@@ -62,11 +63,28 @@ myListElement.innerHTML = '';
 
   Comments.forEach((line) => {
         myListElement.appendChild(createListElement(line.substring(1,line.length - 1)));
+         var linebreak = document.createElement("br");
+        myListElement.appendChild(linebreak);
         console.log(line);
     });
 
 
 });
+}
+
+function loginStatus() {
+document.getElementById("ContactME").style.display="none";
+          String itsTrue = "true";
+   fetch('/Login').then(response => response.json()) .then((Status) => {
+    
+
+      if(Status.isLoggedIn.equals(thatsTrue) == true) {
+           document.getElementById("ContactME").style.display="block";   
+      }
+   
+   
+   });
+
 }
 
 function createListElement(text) {
